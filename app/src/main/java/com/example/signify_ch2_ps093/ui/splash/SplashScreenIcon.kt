@@ -15,6 +15,5 @@ class SplashScreenIcon : AppCompatActivity() {
 
         binding = ActivitySplashScreenIconBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
     }
 }
