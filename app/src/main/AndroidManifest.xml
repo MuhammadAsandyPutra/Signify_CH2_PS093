@@ -17,6 +17,7 @@
             android:exported="false" />
 
         <activity android:name=".ui.splash.SplashScreenIcon"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,6 +37,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

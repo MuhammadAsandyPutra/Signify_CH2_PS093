@@ -7,6 +7,4 @@
     android:background="@drawable/logo_signify"
     tools:context=".ui.splash.SplashScreenIcon">
 
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
