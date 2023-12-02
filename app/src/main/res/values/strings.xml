@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">Signify_CH2_PS093</string>
-    <string name="signify_splash">Signify SplashScreen</string>
+    <string name="login">Login</string>
+    <string name="header2">Selamat Datang di Signify</string>
+    <string name="emailTv">Email</string>
+    <string name="Password">Password</string>
+    <string name="errorPassword">Password tidak boleh kurang dari 8 karakter !</string>
+    <string name="Masuk">Masuk</string>
+    <string name="questionLogin">Belum punya akun ?</string>
+    <string name="daftarQuestion">Daftar</string>
+    <string name="signify">Signify</string>
+    <string name="signIn">Daftar</string>
+    <string name="ayoDaftar">Ayo daftarkan dirimu terlebih dahulu !</string>
+    <string name="username">Nama</string>
+    <string name="daftar">Daftar</string>
+    <string name="questionSignIn">Sudah punya akun ?</string>
+
 </resources>

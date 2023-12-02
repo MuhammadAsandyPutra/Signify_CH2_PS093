@@ -4,17 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_teal"
+    android:background="@drawable/logo_signify"
     tools:context=".ui.splash.SplashScreenIcon">
 
-    <ImageView
-        android:id="@+id/iv_signify_icon"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:contentDescription="@string/signify_splash"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/signify_icon" />
 </androidx.constraintlayout.widget.ConstraintLayout>
