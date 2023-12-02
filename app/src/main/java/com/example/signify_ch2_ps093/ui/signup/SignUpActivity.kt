@@ -15,11 +15,12 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.tvDirectToLogin.setOnClickListener{
+        binding.tvDirectToLogin.setOnClickListener {
             val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
 //            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
 
+        }
     }
 }
