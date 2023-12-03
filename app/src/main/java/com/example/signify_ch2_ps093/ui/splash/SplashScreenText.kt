@@ -11,7 +11,7 @@ import com.example.signify_ch2_ps093.ui.signup.SignUpActivity
 @SuppressLint("CustomSplashScreen")
 class SplashScreenText : AppCompatActivity() {
 
-    private lateinit var binding : ActivitySplashScreenTextBinding
+    private lateinit var binding: ActivitySplashScreenTextBinding
     private val SPLASH_DISPLAY_LENGTH = 2000
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,4 +26,5 @@ class SplashScreenText : AppCompatActivity() {
             finish()
         }, SPLASH_DISPLAY_LENGTH.toLong())
     }
+
 }

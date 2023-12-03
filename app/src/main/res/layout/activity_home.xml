@@ -47,7 +47,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:padding="8dp"
                 app:layout_constraintStart_toEndOf="@id/usernameHeader"
-                android:src="@drawable/headerDecor"/>
+                android:src="@drawable/header_decor"/>
 
 
             <TextView
