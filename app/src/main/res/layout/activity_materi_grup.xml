@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_blue"
+    tools:context=".ui.materigrup.MateriGrupActivity">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/materi_progress_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ProgressBar
+            android:id="@+id/progress_bar_materi"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/circular_shape"
+            android:indeterminate="false"
+            android:progressDrawable="@drawable/circular_progress_bar"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/progress_text_materi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/progress_bar_materi"
+            android:layout_alignBottom="@+id/progress_bar_materi"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="31dp"
+            android:gravity="center"
+            android:text="@string/progress_bar_text"
+            android:textColor="@color/blue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_materi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@+id/progress_bar_materi"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/tv_materi"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_konten_materi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_materi"
+            android:layout_marginStart="40dp"
+            android:layout_toEndOf="@+id/progress_bar_materi"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/tv_konten_materi"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_konten_materi"
+            android:layout_marginStart="40dp"
+            android:layout_toEndOf="@+id/progress_bar_materi"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/tv_message_materi"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btn_lanjut_belajar"
+            android:layout_width="160dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="120dp"
+            android:backgroundTint="@color/blue"
+            android:text="@string/btn_lanjut_belajar" />
+
+    </RelativeLayout>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="130dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_begin="192dp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_materi_grup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        tools:listitem="@layout/item_materi" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
