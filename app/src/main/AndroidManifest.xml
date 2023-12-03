@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Signify_CH2_PS093"
         tools:targetApi="31">
         <activity
+            android:name=".ui.materigrup.DetailItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.materigrup.MateriGrupActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.home.HomeActivity"
             android:exported="false" />
         <activity
@@ -33,9 +39,7 @@
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
+
     </application>
 
 </manifest>

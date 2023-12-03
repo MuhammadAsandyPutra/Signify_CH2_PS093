@@ -15,4 +15,22 @@
     <string name="daftar">Daftar</string>
     <string name="questionSignIn">Sudah punya akun ?</string>
 
+    <!--activity_materi_grup-->
+    <string name="progress_bar_text">---</string>
+    <string name="tv_materi">Materi 1</string>
+    <string name="tv_konten_materi">Kata Kerja</string>
+    <string name="tv_message_materi">Lanjutkan Belajarmu</string>
+    <string name="btn_lanjut_belajar">Lanjut belajar</string>
+    <string name="tv_title_detail_item">kata sapaan</string>
+
+    <!--item_materi-->
+    <string name="tv_title_materi">kata sapaan</string>
+    <string name="tv_subtitle_materi">20 kosakata</string>
+    <string name="content_description">content description</string>
+
+
+
+
+
+
 </resources>
