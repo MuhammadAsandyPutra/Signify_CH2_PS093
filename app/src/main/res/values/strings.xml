@@ -27,10 +27,14 @@
     <string name="tv_title_materi">kata sapaan</string>
     <string name="tv_subtitle_materi">20 kosakata</string>
     <string name="content_description">content description</string>
+    <string name="mari_belajar_bahasa_isyarat">Mari Belajar bahasa isyarat !</string>
+    <string name="lakukan_apa_hari_ini">Lakukan apa hari ini?</string>
+    <string name="selalu_tambahkan_pengetahuanmu">Selalu tambahkan pengetahuanmu !</string>
+    <string name="ayo_belajar_bahasa_isyarat">Ayo belajar bahasa isyarat</string>
+    <string name="informasi_terkini">Informasi Terkini !</string>
+    <string name="jangan_lewatkan_berita_terkini_dari_signify">Jangan lewatkan berita terkini dari Signify</string>
 
 
-
-
-
+    <string-array name="title">Ayo belajar bahasa isyarat</string-array>
 
 </resources>
