@@ -33,6 +33,11 @@
     <string name="ayo_belajar_bahasa_isyarat">Ayo belajar bahasa isyarat</string>
     <string name="informasi_terkini">Informasi Terkini !</string>
     <string name="jangan_lewatkan_berita_terkini_dari_signify">Jangan lewatkan berita terkini dari Signify</string>
+    <string name="tv_title_level">Level 1</string>
+    <string name="tv_subtitle_level">2 materi kosa kata</string>
+    <string name="tv_no_level">1</string>
+    <string name="tv_title_detail_materi">Title</string>
+    <string name="tv_description_materi">description</string>
 
 
     <string-array name="title">Ayo belajar bahasa isyarat</string-array>

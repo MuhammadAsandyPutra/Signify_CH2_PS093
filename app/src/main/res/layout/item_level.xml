@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/white_blue">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/rounded_rectangle"
+        android:elevation="8dp">
+
+        <TextView
+            android:id="@+id/tv_title_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_medium"
+            android:lineSpacingMultiplier="1"
+            android:text="@string/tv_title_level"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/iv_image_level"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_subtitle_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_subtitle_level"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_title_level"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_level" />
+
+        <ImageView
+            android:id="@+id/iv_image_level"
+            android:layout_width="77dp"
+            android:layout_height="77dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/content_description"
+            android:padding="10dp"
+            android:scaleType="center"
+            android:src="@drawable/circle_level"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_no_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/tv_no_level"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/iv_image_level"
+            app:layout_constraintStart_toStartOf="@+id/iv_image_level"
+            app:layout_constraintTop_toTopOf="@+id/iv_image_level" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
