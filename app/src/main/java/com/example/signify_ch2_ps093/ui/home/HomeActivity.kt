@@ -30,7 +30,13 @@ class HomeActivity : AppCompatActivity() {
         rvHome.adapter = adapter
         rvHome2.adapter = adapter
 
+        showNavBar()
 
+
+    }
+
+    private fun showNavBar(){
+        binding.bottomNavBar
     }
 
 }
