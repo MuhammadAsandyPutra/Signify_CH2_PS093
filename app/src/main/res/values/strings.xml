@@ -43,5 +43,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hint">Ketik jawaban anda...</string>
+    <string name="tv_message_result_quiz">Selamat! \n Skor Kamu Adalah</string>
+    <string name="btn_ok_quiz_result">OK</string>
+    <string name="tv_score">100</string>
+    <string name="tv_title_quiz_result">Quiz Result</string>
 
 </resources>
