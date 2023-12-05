@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.quiz.PilihanGandaFragment"
+    android:background="@drawable/bg_quiz">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Title" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="281dp"
+            android:layout_height="400dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title">
+
+            <com.google.android.exoplayer2.ui.PlayerView
+                android:id="@+id/playerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="489dp" />
+
+        <TextView
+            android:id="@+id/tv_pertanyaan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline6"
+            tools:text="Isyarat apakah ini ?" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/midborder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="205dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pgBorder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="538dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="598dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="660dp" />
+
+
+        <Button
+            android:id="@+id/btnA"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            tools:text="Halo"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_semibold"
+            android:background="@drawable/buttonpg"
+            app:backgroundTint="#FFFFFF"
+            android:layout_marginStart="52dp"
+            android:padding="10dp"
+            app:layout_constraintTop_toBottomOf="@id/pgBorder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/midborder"/>
+
+        <Button
+            android:id="@+id/btnB"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            tools:text="Apa kabar ?"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:background="@drawable/buttonpg"
+            app:backgroundTint="#FFFFFF"
+            app:layout_constraintTop_toBottomOf="@id/guideline9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/midborder"
+            android:padding="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="52dp"
+            />
+
+        <Button
+            android:id="@+id/btnC"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            tools:text="Selamat Tinggal"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/black"
+            android:background="@drawable/buttonpg"
+            app:backgroundTint = "#FFFFFF"
+            android:padding="10dp"
+            app:layout_constraintTop_toBottomOf="@id/pgBorder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/midborder"
+            android:layout_marginEnd="52dp"/>
+
+        <Button
+            android:id="@+id/btnD"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="52dp"
+            android:background="@drawable/buttonpg"
+            android:fontFamily="@font/poppins_semibold"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            app:backgroundTint="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/midborder"
+            app:layout_constraintTop_toBottomOf="@id/btnC"
+            tools:text="Oke!" />
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            tools:text="Lanjutkan"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/black"
+            android:background="@drawable/btnlanjutkan"
+            app:backgroundTint="#D7EBF2"
+            app:layout_constraintTop_toBottomOf="@id/guideline11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"/>
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>
