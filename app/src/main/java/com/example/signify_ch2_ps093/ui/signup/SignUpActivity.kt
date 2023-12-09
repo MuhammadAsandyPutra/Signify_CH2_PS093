@@ -64,6 +64,7 @@ class SignUpActivity : AppCompatActivity() {
                     toast(it.error)
                 }
 
+                else -> {}
             }
         }
     }

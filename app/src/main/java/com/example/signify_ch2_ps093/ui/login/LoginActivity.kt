@@ -67,6 +67,8 @@ class LoginActivity : AppCompatActivity() {
                     binding.btnLogin.text = getString(R.string.login)
                     toast(result.error)
                 }
+
+                else -> {}
             }
         }
     }

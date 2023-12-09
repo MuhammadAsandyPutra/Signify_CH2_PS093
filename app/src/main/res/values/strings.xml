@@ -48,5 +48,6 @@
     <string name="tv_title_quiz_result">Quiz Result</string>
     <string name="signup_succeed">Berhasil Daftar</string>
     <string name="continue_login">Lanjut</string>
+    <string name="detail">Detail</string>
 
 </resources>

@@ -3,6 +3,8 @@ package com.example.signify_ch2_ps093.data
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.example.signify_ch2_ps093.data.network.ApiService
+import com.example.signify_ch2_ps093.data.network.LoginRequest
+import com.example.signify_ch2_ps093.data.network.RegisterRequest
 import com.example.signify_ch2_ps093.data.network.Responses
 import com.example.signify_ch2_ps093.data.pref.UserModel
 import com.google.gson.Gson
@@ -20,7 +22,7 @@ class Repository private constructor(
     fun signup(name: String, email: String, password: String): LiveData<Result<UserModel>> {
         result.value = Result.Loading
 
-        val client = apiService.register(name, email, password)
+        val client = apiService.register(request = RegisterRequest(name, email, password))
         client.enqueue(object : Callback<Responses> {
             override fun onResponse(call: Call<Responses>, response: Response<Responses>) {
                 try {
@@ -54,7 +56,7 @@ class Repository private constructor(
     fun login(email: String, password: String): LiveData<Result<String>> {
         uploadResult.value = Result.Loading
 
-        val client = apiService.login(email, password)
+        val client = apiService.login(request = LoginRequest(email, password))
         client.enqueue(object : Callback<Responses> {
             override fun onResponse(call: Call<Responses>, response: Response<Responses>) {
                 try {
