@@ -4,9 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.signify_ch2_ps093.R
 import com.example.signify_ch2_ps093.data.pref.UserPreference
 import com.example.signify_ch2_ps093.databinding.ActivityHomeBinding
 import com.example.signify_ch2_ps093.ui.utils.Constant
+import com.example.signify_ch2_ps093.ui.utils.NavigationUtil
 
 class HomeActivity : AppCompatActivity() {
 
@@ -21,7 +23,10 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        showNavBar()
+        val bottomNavigationView = binding.bottomNavBar
+        NavigationUtil.showNavBar(bottomNavigationView, this)
+
+
         setupView()
 
     }
@@ -44,8 +49,9 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun showNavBar(){
-        binding.bottomNavBar
-    }
 
+    override fun onResume() {
+        super.onResume()
+        binding.bottomNavBar.menu.findItem(R.id.home)?.isChecked = true
+    }
 }

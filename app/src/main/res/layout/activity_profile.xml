@@ -88,5 +88,36 @@
         android:layout_marginTop="8dp"
         android:spinnerMode="dropdown"/>
 
+    <ImageView
+        android:id="@+id/IvBod"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/ic_baseline_date_range_24"
+        app:layout_constraintTop_toBottomOf="@id/IvGender"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/TvBod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/IvBod"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerGender"
+        tools:text="test ini adalah tanggal"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="9dp"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:menu="@menu/menu_navbar"
+        android:background="@color/white_blue"
+        app:layout_constraintVertical_bias="1.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

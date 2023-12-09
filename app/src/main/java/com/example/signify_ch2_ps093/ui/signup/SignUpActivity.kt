@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.signify_ch2_ps093.R
 import com.example.signify_ch2_ps093.data.Result
+import com.example.signify_ch2_ps093.data.pref.UserPreference
 import com.example.signify_ch2_ps093.databinding.ActivitySignUpBinding
 import com.example.signify_ch2_ps093.ui.login.LoginActivity
 import com.example.signify_ch2_ps093.ui.utils.ViewModelFactory
@@ -75,7 +76,9 @@ class SignUpActivity : AppCompatActivity() {
             val email = binding.emailEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
 
+
             signup(name, email, password)
+            UserPreference.saveUserInfo(username = name, email, applicationContext)
         }
     }
 }

@@ -32,4 +32,21 @@ object UserPreference {
         editor.apply()
     }
 
+    fun saveUserInfo(username: String, email: String, context: Context){
+        val editor = preferenceEditor(context)
+        editor.putString("username", username)
+        editor.putString("email", email)
+        editor.apply()
+    }
+
+    fun getUsername(context: Context): String? {
+        val sharedPref = context.getSharedPreferences(SESSION, Context.MODE_PRIVATE)
+        return sharedPref.getString("username", null)
+    }
+
+    fun getEmail(context: Context): String?{
+        val sharedPref = context.getSharedPreferences(SESSION, Context.MODE_PRIVATE)
+        return sharedPref.getString("email", null)
+    }
+
 }
