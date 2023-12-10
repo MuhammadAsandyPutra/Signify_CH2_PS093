@@ -50,4 +50,36 @@
     <string name="continue_login">Lanjut</string>
     <string name="detail">Detail</string>
 
+
+    <string name="tv_title_item_detail_home">Materi\nBahasa\nIsyarat</string>
+    <!--list card home-->
+    <string-array name="data_item_home_title">
+        <item>Materi\nBahasa\nIsyarat</item>
+        <item>Quiz\nBahasa\nIsyarat</item>
+    </string-array>
+    <string-array name="data_item_home_message">
+        <item>Yuk belajar dengan giat !</item>
+        <item>Berani selesaikan quiz ?</item>
+    </string-array>
+    <integer-array name="data_item_home_image">
+        <item>@drawable/image_grad</item>
+        <item>@drawable/image_book</item>
+    </integer-array>
+
+    <!--list card article-->
+    <string-array name="data_article_title">
+        <item>Artikel 1</item>
+        <item>Artikel 2</item>
+        <item>Artikel 3</item>
+    </string-array>
+    <string-array name="data_article_message">
+        <item>Ini banner artikel 1</item>
+        <item>Ini banner artikel 2</item>
+        <item>Ini banner artikel 3</item>
+    </string-array>
+    <integer-array name="data_article_image">
+        <item>@drawable/image_book</item>
+        <item>@drawable/image_grad</item>
+        <item>@drawable/image_book</item>
+    </integer-array>
 </resources>
