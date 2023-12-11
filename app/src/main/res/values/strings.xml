@@ -52,6 +52,7 @@
 
 
     <string name="tv_title_item_detail_home">Materi\nBahasa\nIsyarat</string>
+    <string name="logout">Logout</string>
     <!--list card home-->
     <string-array name="data_item_home_title">
         <item>Materi\nBahasa\nIsyarat</item>
@@ -82,4 +83,9 @@
         <item>@drawable/image_grad</item>
         <item>@drawable/image_book</item>
     </integer-array>
+
+    <string-array name="gender_options">
+        <item>Laki-laki</item>
+        <item>Perempuan</item>
+    </string-array>
 </resources>
