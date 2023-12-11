@@ -20,5 +20,8 @@ interface ApiService {
     @GET("get/profile")
     fun getProfile(): Call<ProfileModel>
 
+    @GET("/get/dict")
+    fun getDictionary(): Call<DictionaryResponse>
+
 
 }
