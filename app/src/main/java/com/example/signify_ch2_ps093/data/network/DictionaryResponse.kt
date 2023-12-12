@@ -1,33 +1,35 @@
 package com.example.signify_ch2_ps093.data.network
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class DictionaryResponse(
+	@SerializedName("materials")
+	val materials: List<MaterialsItem>? = null
+) : Parcelable
 
-	@field:SerializedName("materials")
-	val materials: List<MaterialsItem?>? = null
-)
-
+@Parcelize
 data class MaterialsItem(
+	@SerializedName("list_items")
+	val listItems: List<ListItem>? = null,
 
-	@field:SerializedName("list_item")
-	val listItem: List<ListItemItem?>? = null,
-
-	@field:SerializedName("category")
+	@SerializedName("category")
 	val category: String? = null
-)
+) : Parcelable
 
-data class ListItemItem(
-
-	@field:SerializedName("name")
+@Parcelize
+data class ListItem(
+	@SerializedName("name")
 	val name: String? = null,
 
-	@field:SerializedName("link")
+	@SerializedName("link")
 	val link: String? = null,
 
-	@field:SerializedName("id")
+	@SerializedName("id")
 	val id: Int? = null,
 
-	@field:SerializedName("desc")
+	@SerializedName("desc")
 	val desc: String? = null
-)
+) : Parcelable

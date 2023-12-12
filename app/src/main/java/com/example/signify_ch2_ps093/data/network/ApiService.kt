@@ -24,4 +24,5 @@ interface ApiService {
     fun getDictionary(): Call<DictionaryResponse>
 
 
+
 }

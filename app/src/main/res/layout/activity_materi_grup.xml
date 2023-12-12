@@ -105,21 +105,23 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_materi_grup"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="480dp"
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        />
+       />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_navbar"
-        android:background="@color/white_blue"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/rv_materi_grup"
+        app:layout_constraintVertical_bias="1.0"
+        app:menu="@menu/menu_navbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
