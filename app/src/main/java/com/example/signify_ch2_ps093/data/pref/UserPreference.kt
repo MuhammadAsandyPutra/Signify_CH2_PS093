@@ -57,4 +57,10 @@ object UserPreference {
         editor.apply()
     }
 
+    //pake sharedpreference dulu buat ngetest ui level
+    fun getUserLevel(context: Context): Int {
+        val sharedPref = context.getSharedPreferences(SESSION, Context.MODE_PRIVATE)
+        return sharedPref.getInt("user_level", 1) // Default level 1 jika tidak ada nilai yang tersimpan
+    }
+
 }
