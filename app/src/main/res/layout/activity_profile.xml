@@ -6,13 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileActivity">
 
+    <!-- Header Section -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:background="@drawable/bg_profiles"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -21,9 +20,8 @@
             android:layout_height="107dp"
             android:layout_margin="10dp"
             android:src="@drawable/img_profile"
-            app:layout_constraintBottom_toBottomOf="@id/header"
-            app:layout_constraintStart_toStartOf="@id/header"
-            app:layout_constraintTop_toTopOf="@id/header" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/TvUsername"
@@ -33,7 +31,7 @@
             android:layout_marginTop="32dp"
             android:fontFamily="@font/poppins_semibold"
             app:layout_constraintStart_toEndOf="@id/IvProfile"
-            app:layout_constraintTop_toTopOf="@id/header"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Muhammad Asandy Putra" />
 
         <TextView
@@ -47,119 +45,107 @@
             app:layout_constraintTop_toBottomOf="@id/TvUsername"
             tools:text="AsandyPutra@gmail.com" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="136dp" />
-
-    <TextView
-        android:id="@+id/TvDetail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="@string/detail"
-        android:textSize="21sp"
+    <!-- Content Section -->
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavBar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline7" />
+        app:layout_constraintTop_toBottomOf="@id/header">
 
-    <ImageView
-        android:id="@+id/IvGender"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:src="@drawable/ic_gender"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/TvDetail" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    <Spinner
-        android:id="@+id/spinnerGender"
-        android:layout_width="200dp"
-        android:layout_height="48dp"
-        app:layout_constraintStart_toEndOf="@id/IvGender"
-        app:layout_constraintTop_toBottomOf="@id/TvDetail"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:spinnerMode="dropdown"/>
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo_signify"
+                android:layout_marginBottom="16dp"/>
 
-    <ImageView
-        android:id="@+id/IvBod"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_baseline_date_range_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/IvGender" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Signify - Belajar Bahasa Isyarat"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp"/>
 
-    <TextView
-        android:id="@+id/TvBod"
-        android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Signify adalah aplikasi pembelajaran bahasa isyarat yang dirancang untuk membantu pengguna dalam memahami dan mempelajari bahasa isyarat secara interaktif. Aplikasi ini menyediakan berbagai konten, seperti video pengajaran, latihan, dan materi pembelajaran untuk meningkatkan keterampilan berkomunikasi menggunakan bahasa isyarat."
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tim Signify"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Signify dikembangkan oleh tim ahli dalam bidang bahasa isyarat, pendidikan, dan teknologi yang berkomitmen untuk menyediakan pengalaman pembelajaran yang menyenangkan dan efektif."
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Versi Aplikasi: 1.0.0"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="© 2023 Signify. Hak Cipta Dilindungi."
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavBar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/IvBod"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerGender"
-        tools:text="test ini adalah tanggal"
-        android:layout_marginTop="14dp"
-        android:layout_marginStart="9dp"/>
-
-    <ImageView
-        android:id="@+id/IvPhone"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_phone"
+        android:background="@color/white_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/IvBod" />
-
-    <EditText
-        android:id="@+id/TvPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintStart_toEndOf="@id/IvPhone"
-        app:layout_constraintTop_toBottomOf="@id/TvBod"
-        android:hint="Isi nomor Hp anda" />
+        app:menu="@menu/menu_navbar" />
 
     <ImageView
         android:id="@+id/IvLogout"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="4dp"
         android:src="@drawable/ic_logout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/IvPhone" />
-
+        app:layout_constraintTop_toBottomOf="@+id/header" />
 
     <TextView
         android:id="@+id/TvLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/poppins"
         android:text="@string/logout"
         android:textColor="#FF0000"
-        app:layout_constraintStart_toEndOf="@id/IvLogout"
-        app:layout_constraintTop_toBottomOf="@id/TvPhone" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_navbar"
-        android:background="@color/white_blue"
-        app:layout_constraintVertical_bias="1.0" />
-
+        app:layout_constraintStart_toEndOf="@+id/IvLogout"
+        app:layout_constraintTop_toBottomOf="@+id/header" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

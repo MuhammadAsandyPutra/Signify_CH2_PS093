@@ -1,6 +1,7 @@
 package com.example.signify_ch2_ps093.ui.materigrup
 
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,8 +28,10 @@ class DetailItemActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.rv_detail_item)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Mendapatkan kategori yang dipilih dari activity sebelumnya
         val selectedCategory = intent.getStringExtra("CATEGORY_NAME")
+
+        val TvTitle : TextView = findViewById(R.id.tv_title_detail_item)
+        TvTitle.text = selectedCategory
 
         fetchDataFromApi(selectedCategory)
     }
@@ -45,13 +48,6 @@ class DetailItemActivity : AppCompatActivity() {
                         adapter = DetailItemAdapter(filteredItems)
                         recyclerView.adapter = adapter
 
-//                        val firstVideoLink = filteredItems.firstOrNull()?.link
-//                        firstVideoLink?.let {
-//                            // Menyiapkan Intent untuk DetailMateriActivity dan menambahkan link video ke dalamnya
-//                            val intent = Intent(this@DetailItemActivity, DetailMateriActivity::class.java)
-//                            intent.putExtra("SELECTED_LINK", it)
-//                            startActivity(intent)
-//                        }
                     }
                 } else {
                     Toast.makeText(this@DetailItemActivity, "Failed to get data", Toast.LENGTH_SHORT).show()

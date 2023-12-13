@@ -49,13 +49,6 @@ object UserPreference {
         return sharedPref.getString("email", null)
     }
 
-    fun saveSelectedDate(context: Context, selectedDate: String, selectedGender: Int, enteredPhone: String) {
-        val editor = preferenceEditor(context)
-        editor.putString("selected_date", selectedDate)
-        editor.putInt("selected_gender", selectedGender)
-        editor.putString("entered_phone", enteredPhone)
-        editor.apply()
-    }
 
     //pake sharedpreference dulu buat ngetest ui level
     fun getUserLevel(context: Context): Int {

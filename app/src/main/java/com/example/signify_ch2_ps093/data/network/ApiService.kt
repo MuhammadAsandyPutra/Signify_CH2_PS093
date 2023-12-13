@@ -23,6 +23,9 @@ interface ApiService {
     @GET("/get/dict")
     fun getDictionary(): Call<DictionaryResponse>
 
+    @GET("/get/quiz")
+    fun getQuiz(): Call<QuizResponse>
+
 
 
 }

@@ -25,6 +25,7 @@ class DetailItemAdapter(private val items: List<ListItem>) : RecyclerView.Adapte
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, DetailMateriActivity::class.java)
             intent.putExtra("SELECTED_LINK", currentItem.link)
+            intent.putExtra("SELECTED_TITLE", currentItem.name)
             holder.itemView.context.startActivity(intent)
         }
 

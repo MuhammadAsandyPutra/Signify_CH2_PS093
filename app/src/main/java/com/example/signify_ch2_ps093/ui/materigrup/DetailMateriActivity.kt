@@ -2,6 +2,7 @@ package com.example.signify_ch2_ps093.ui.materigrup
 
 import android.net.Uri
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.signify_ch2_ps093.R
 import com.google.android.exoplayer2.MediaItem
@@ -20,6 +21,10 @@ class DetailMateriActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail_materi)
 
         val receivedLink = intent.getStringExtra("SELECTED_LINK")
+        val receivedTitle = intent.getStringExtra("SELECTED_TITLE")
+
+        val TvTitle : TextView = findViewById(R.id.tv_title_materi)
+        TvTitle.text = receivedTitle
 
         val playerView = findViewById<PlayerView>(R.id.playerView)
 

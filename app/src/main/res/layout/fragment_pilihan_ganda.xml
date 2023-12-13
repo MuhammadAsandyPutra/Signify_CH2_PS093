@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_pilgan"
     tools:context=".ui.quiz.PilihanGandaFragment"
     android:background="@drawable/bg_quiz">
 
@@ -23,7 +24,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Title" />
+            android:text="Title" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="281dp"
@@ -57,7 +58,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline6"
-            tools:text="Isyarat apakah ini ?" />
+            android:text="Isyarat apakah ini ?" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/midborder"
@@ -91,7 +92,7 @@
         <Button
             android:id="@+id/btnA"
             android:layout_width="140dp"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             tools:text="Halo"
             android:textColor="@color/black"
             android:fontFamily="@font/poppins_semibold"
@@ -106,7 +107,7 @@
         <Button
             android:id="@+id/btnB"
             android:layout_width="140dp"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             tools:text="Apa kabar ?"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/black"
@@ -124,7 +125,7 @@
         <Button
             android:id="@+id/btnC"
             android:layout_width="140dp"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             tools:text="Selamat Tinggal"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/black"
@@ -139,7 +140,7 @@
         <Button
             android:id="@+id/btnD"
             android:layout_width="140dp"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="52dp"
             android:background="@drawable/buttonpg"
@@ -156,7 +157,7 @@
             android:id="@+id/btnSubmit"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            tools:text="Lanjutkan"
+            android:text="Lanjutkan"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/black"
             android:background="@drawable/btnlanjutkan"
