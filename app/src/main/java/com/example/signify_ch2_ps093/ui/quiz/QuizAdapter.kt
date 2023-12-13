@@ -6,10 +6,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.signify_ch2_ps093.R
+import com.example.signify_ch2_ps093.data.network.ContentItem
 import com.example.signify_ch2_ps093.data.network.QuizessItem
 
 class QuizAdapter(
-    private val userLevel: Int
+    private val userLevel: Int,
+    private val onItemClickListener: (ContentItem) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val OPEN_TYPE = 1
@@ -38,9 +40,19 @@ class QuizAdapter(
         val levelItem = quizLevels[position]
         if (holder is OpenQuizViewHolder) {
             holder.bindOpen(levelItem)
+
+            holder.itemView.setOnClickListener{
+                levelItem.content?.let { contents ->
+                    val materialContent = contents.find { it.type == "material" }
+                    materialContent?.let { material ->
+                        onItemClickListener.invoke(material)
+                    }
+                }
+            }
         } else if (holder is LockedQuizViewHolder) {
             holder.bindLocked(levelItem)
         }
+
     }
 
     override fun getItemCount(): Int {
@@ -59,9 +71,11 @@ class QuizAdapter(
     inner class OpenQuizViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val levelNameTextView: TextView = itemView.findViewById(R.id.tv_title_level)
 
+
         fun bindOpen(quizItem: QuizessItem) {
             levelNameTextView.text = quizItem.levelName
             // Setup tampilan jika item terbuka
+
         }
     }
 

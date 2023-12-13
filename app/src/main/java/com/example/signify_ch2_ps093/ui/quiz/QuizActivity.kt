@@ -1,5 +1,6 @@
 package com.example.signify_ch2_ps093.ui.quiz
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,7 +38,26 @@ class QuizActivity : AppCompatActivity() {
         binding.rvLevel
         binding.rvLevel.layoutManager = LinearLayoutManager(this)
 
-        quizAdapter = QuizAdapter(userHighestLevel)
+        quizAdapter = QuizAdapter(userHighestLevel) {materialContent ->
+            val name = materialContent.name
+            val link = materialContent.link
+
+            val intent = Intent(this@QuizActivity, QuizDetailActivity::class.java).apply {
+                putExtra("NAME", name)
+                putExtra("LINK", link)
+            }
+
+//            val intentBundle = Intent(this@QuizActivity, QuizDetailActivity::class.java).apply {
+//                val bundle = Bundle().apply {
+//                    putParcelableArrayListExtra("MATERIALS", ArrayList(materialContent))
+//                }
+//                putExtras(bundle)
+//
+//
+//            }
+            startActivity(intent)
+
+        }
         binding.rvLevel.adapter = quizAdapter
 
         fetchData()
@@ -66,3 +86,14 @@ class QuizActivity : AppCompatActivity() {
         })
     }
 }
+
+
+
+
+//            val name = materialContent.name
+//            val link = materialContent.link
+//
+//            val intent = Intent(this@QuizActivity, QuizDetailActivity::class.java).apply {
+//                putExtra("NAME", name)
+//                putExtra("LINK", link)
+//            }

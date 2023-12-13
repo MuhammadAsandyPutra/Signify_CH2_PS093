@@ -2,6 +2,7 @@ package com.example.signify_ch2_ps093.ui.quiz
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.signify_ch2_ps093.R
 import com.example.signify_ch2_ps093.databinding.ActivityQuizDetailBinding
@@ -22,6 +23,17 @@ class QuizDetailActivity : AppCompatActivity() {
         binding = ActivityQuizDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        val contentNameReceived = intent.getStringExtra("NAME")
+        val contentLinkReceived = intent.getStringExtra("LINK")
+
+        Log.d("DetailQuiz", "Data name yang diterima : $contentNameReceived")
+
+
+
+        binding.quizTitle.text = contentNameReceived
+
+
         binding.btnLanjutkan.setOnClickListener {
             val fragmentPilgan = PilihanGandaFragment()
             val transaction = supportFragmentManager.beginTransaction()
@@ -36,7 +48,7 @@ class QuizDetailActivity : AppCompatActivity() {
         exoPlayer = SimpleExoPlayer.Builder(this).build()
         playerView.player = exoPlayer
 
-        val mediaItem = MediaItem.fromUri(Uri.parse("https://storage.googleapis.com/vide-materi-signify/kata-ganti-orang/Aku.mp4"))
+        val mediaItem = MediaItem.fromUri(Uri.parse(contentLinkReceived))
         val mediaSource = ProgressiveMediaSource.Factory(DefaultDataSourceFactory(this, Util.getUserAgent(this, "app-name")))
             .createMediaSource(mediaItem)
 
