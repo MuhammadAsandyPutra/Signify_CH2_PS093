@@ -47,5 +47,8 @@ data class ContentItem(
 	val options: List<String>? = null,
 
 	@field:SerializedName("name")
-	val name: String? = null
+	val name: String? = null,
+
+	@field:SerializedName("levelContent")
+	val levelContent: Int? = null
 ) : Parcelable

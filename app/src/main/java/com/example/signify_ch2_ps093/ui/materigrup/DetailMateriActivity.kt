@@ -42,7 +42,7 @@ class DetailMateriActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        // Hentikan ExoPlayer saat activity dihancurkan
+
         exoPlayer?.release()
     }
 }

@@ -11,7 +11,7 @@ import com.example.signify_ch2_ps093.data.network.QuizessItem
 
 class QuizAdapter(
     private val userLevel: Int,
-    private val onItemClickListener: (ContentItem) -> Unit
+    private val onItemClickListener: OnContentItemClickListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val OPEN_TYPE = 1
@@ -22,6 +22,26 @@ class QuizAdapter(
     fun setData(levels: List<QuizessItem>) {
         this.quizLevels = levels
         notifyDataSetChanged()
+    }
+
+    fun getMaterialContents(): List<ContentItem> {
+        return quizLevels.flatMap { it.content.orEmpty() }
+            .filter { it.type == "material" }
+    }
+
+    fun getMaterialPilganContents(): List<ContentItem> {
+        return quizLevels.flatMap { it.content.orEmpty() }
+            .filter { it.type == "multiple_choices" }
+    }
+
+    fun getMaterialEssayContents(): List<ContentItem> {
+        return quizLevels.flatMap { it.content.orEmpty() }
+            .filter { it.type == "essay" }
+    }
+
+    fun getMaterialPeragakan(): List<ContentItem>{
+        return quizLevels.flatMap { it.content.orEmpty() }
+            .filter { it.type == "practice" }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -44,8 +64,19 @@ class QuizAdapter(
             holder.itemView.setOnClickListener{
                 levelItem.content?.let { contents ->
                     val materialContent = contents.find { it.type == "material" }
-                    materialContent?.let { material ->
-                        onItemClickListener.invoke(material)
+                    val pilganContent = contents.find { it.type == "multiple_choices" }
+                    val essayContent = contents.find { it.type == "essay" }
+                    val peragakanContent = contents.find { it.type == "practice" }
+
+
+                    if (materialContent != null) {
+                        onItemClickListener.onContentItemClicked(materialContent)
+                    } else if (pilganContent != null) {
+                        onItemClickListener.onContentItemClicked(pilganContent)
+                    } else if (essayContent != null){
+                        onItemClickListener.onContentItemClicked(essayContent)
+                    } else if (peragakanContent != null){
+                        onItemClickListener.onContentItemClicked(peragakanContent)
                     }
                 }
             }
@@ -86,5 +117,9 @@ class QuizAdapter(
             levelNameTextView.text = quizItem.levelName
             // Setup tampilan jika item terkunci
         }
+    }
+
+    interface OnContentItemClickListener {
+        fun onContentItemClicked(contentItem: ContentItem)
     }
 }

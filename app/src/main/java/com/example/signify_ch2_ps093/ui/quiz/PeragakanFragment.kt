@@ -1,60 +1,111 @@
 package com.example.signify_ch2_ps093.ui.quiz
 
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.signify_ch2_ps093.R
+import androidx.fragment.app.Fragment
+import com.example.signify_ch2_ps093.data.network.ContentItem
+import com.example.signify_ch2_ps093.data.pref.UserPreference
+import com.example.signify_ch2_ps093.databinding.FragmentPeragakanBinding
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [PeragakanFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PeragakanFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private lateinit var binding: FragmentPeragakanBinding
+
+    private lateinit var practiceItem: ArrayList<ContentItem>
+    private lateinit var exoPlayer: SimpleExoPlayer
+
+    private var currentVideoIndex = 0
+
+    companion object {
+        private const val ARG_PRACTICE = "PRACTICE"
+
+        fun newInstance(practiceItem: ArrayList<ContentItem>): PeragakanFragment {
+            val fragment = PeragakanFragment()
+            val args = Bundle().apply {
+                putParcelableArrayList(ARG_PRACTICE, practiceItem)
+            }
+            fragment.arguments = args
+            return fragment
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+        arguments?.getParcelableArrayList<ContentItem>(ARG_PRACTICE)?.let { practiceItems ->
+            practiceItem = practiceItems
         }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_peragakan, container, false)
+    ): View {
+        binding = FragmentPeragakanBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PeragakanFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PeragakanFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        practiceItem = requireArguments().getParcelableArrayList(ARG_PRACTICE) ?: arrayListOf()
+
+        binding.btnSubmit.setOnClickListener {
+            navigateToNextQuestion()
+        }
+
+        initializePlayer()
+    }
+
+    private fun initializePlayer() {
+        exoPlayer = SimpleExoPlayer.Builder(requireContext()).build()
+
+        val playerView = binding.playerView
+        playerView.player = exoPlayer
+
+        val userLevel = UserPreference.getUserLevel(requireContext())
+        val filteredPracticeArrayList = practiceItem.filter { it.levelContent == userLevel }
+
+        val currentContent = filteredPracticeArrayList.getOrNull(currentVideoIndex)
+        if (currentContent?.link != null) {
+            val mediaItem = MediaItem.fromUri(Uri.parse(currentContent.link))
+            val dataSourceFactory = DefaultDataSourceFactory(
+                requireContext(),
+                "user-agent"
+            )
+            val mediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)
+                .createMediaSource(mediaItem)
+            exoPlayer.setMediaSource(mediaSource)
+            exoPlayer.prepare()
+            exoPlayer.playWhenReady = true
+        }
+    }
+
+    private fun navigateToNextQuestion() {
+        val userLevel = UserPreference.getUserLevel(requireContext())
+        val filteredContent = practiceItem.filter { it.levelContent == userLevel }
+
+        if (currentVideoIndex < filteredContent.size - 1) {
+            currentVideoIndex++
+            releasePlayer()
+            initializePlayer()
+        } else {
+            // Implement the action when all practice questions are completed, if needed
+        }
+    }
+
+    private fun releasePlayer() {
+        exoPlayer.release()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        releasePlayer()
     }
 }

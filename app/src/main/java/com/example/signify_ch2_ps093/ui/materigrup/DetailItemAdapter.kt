@@ -22,8 +22,7 @@ class DetailItemAdapter(private val items: List<ListItem>) : RecyclerView.Adapte
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = filteredItems[position]
         holder.nameTextView.text = currentItem.name
-        // Jika Anda memiliki lebih banyak properti yang ingin ditampilkan, lakukan di sini
-        // Menambahkan listener untuk setiap item yang diklik
+
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, DetailMateriActivity::class.java)
             intent.putExtra("SELECTED_LINK", currentItem.link)
@@ -39,7 +38,7 @@ class DetailItemAdapter(private val items: List<ListItem>) : RecyclerView.Adapte
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.tv_title)
-        // Tambahkan referensi ke elemen lain di layout item_dictionary di sini jika diperlukan
+
     }
 
     fun filter(query: String) {

@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.signify_ch2_ps093.data.network.ApiConfig
+import com.example.signify_ch2_ps093.data.network.ContentItem
 import com.example.signify_ch2_ps093.data.network.QuizResponse
 import com.example.signify_ch2_ps093.data.pref.UserPreference
 import com.example.signify_ch2_ps093.databinding.ActivityQuizBinding
@@ -12,12 +13,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class QuizActivity : AppCompatActivity() {
+class QuizActivity : AppCompatActivity(), QuizAdapter.OnContentItemClickListener {
 
     private lateinit var binding: ActivityQuizBinding
-//    private lateinit var levelAdapter: LevelAdapter
-//    private val levelList = mutableListOf<LevelItem>()
-
     private lateinit var quizAdapter: QuizAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,42 +24,36 @@ class QuizActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val userHighestLevel = UserPreference.getUserLevel(this)
-//
-//        for (i in 1..5) {
-//            val isUnlocked = i <= userHighestLevel
-//            levelList.add(LevelItem(i, isUnlocked))
-//        }
-//
-//        levelAdapter = LevelAdapter(levelList)
-//        binding.rvLevel.layoutManager = LinearLayoutManager(this)
-//        binding.rvLevel.adapter = levelAdapter
+
         binding.rvLevel
         binding.rvLevel.layoutManager = LinearLayoutManager(this)
-
-        quizAdapter = QuizAdapter(userHighestLevel) {materialContent ->
-            val name = materialContent.name
-            val link = materialContent.link
-
-            val intent = Intent(this@QuizActivity, QuizDetailActivity::class.java).apply {
-                putExtra("NAME", name)
-                putExtra("LINK", link)
-            }
-
-//            val intentBundle = Intent(this@QuizActivity, QuizDetailActivity::class.java).apply {
-//                val bundle = Bundle().apply {
-//                    putParcelableArrayListExtra("MATERIALS", ArrayList(materialContent))
-//                }
-//                putExtras(bundle)
-//
-//
-//            }
-            startActivity(intent)
-
-        }
+        quizAdapter = QuizAdapter(userHighestLevel, this)
         binding.rvLevel.adapter = quizAdapter
 
         fetchData()
 
+    }
+
+    override fun onContentItemClicked(contentItem: ContentItem) {
+        if (contentItem.type == "material"){
+            val materialContents = quizAdapter.getMaterialContents()
+            val pilganContents = quizAdapter.getMaterialPilganContents()
+            val essayContent = quizAdapter.getMaterialEssayContents()
+            val peragakanContent = quizAdapter.getMaterialPeragakan()
+
+            val intentDetail = Intent(this@QuizActivity, QuizDetailActivity::class.java).apply {
+                val multipleArrayList = ArrayList(pilganContents)
+                val materialArrayList = ArrayList(materialContents)
+                val essayArrayList = ArrayList(essayContent)
+                val peragakanArrayList = ArrayList(peragakanContent)
+
+                putParcelableArrayListExtra("MATERIAL", materialArrayList)
+                putParcelableArrayListExtra("MULTIPLE_CHOICES", multipleArrayList)
+                putParcelableArrayListExtra("ESSAY", essayArrayList)
+                putParcelableArrayListExtra("PRACTICE", peragakanArrayList )
+            }
+            startActivity(intentDetail)
+        }
     }
 
     private fun fetchData() {
@@ -87,13 +79,3 @@ class QuizActivity : AppCompatActivity() {
     }
 }
 
-
-
-
-//            val name = materialContent.name
-//            val link = materialContent.link
-//
-//            val intent = Intent(this@QuizActivity, QuizDetailActivity::class.java).apply {
-//                putExtra("NAME", name)
-//                putExtra("LINK", link)
-//            }
