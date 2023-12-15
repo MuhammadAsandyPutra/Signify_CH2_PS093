@@ -98,11 +98,11 @@ class PeragakanFragment : Fragment() {
             currentVideoIndex++
             releasePlayer()
             initializePlayer()
-            val intent = Intent(requireContext(), CameraActivity::class.java)
-            startActivity(intent)
+
         } else {
             // Implement the action when all practice questions are completed, if needed
-
+            val intent = Intent(requireContext(), CameraActivity::class.java)
+            startActivity(intent)
         }
     }
 

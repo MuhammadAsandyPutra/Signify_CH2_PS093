@@ -212,12 +212,7 @@ class CameraActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (viewBinding.playerView.visibility == View.VISIBLE) {
-            currentVideoUri?.let { showPreview(it) }
-        } else {
-            startCamera()
-            currentVideoUri?.let { showPreview(it) }
-        }
+        currentVideoUri?.let { showPreview(it) }
     }
 
     private val launcherGallery = registerForActivityResult(
