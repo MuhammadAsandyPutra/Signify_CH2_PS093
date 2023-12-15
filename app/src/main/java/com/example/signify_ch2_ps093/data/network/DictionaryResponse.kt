@@ -15,6 +15,12 @@ data class MaterialsItem(
 	@SerializedName("list_items")
 	val listItems: List<ListItem>? = null,
 
+	@SerializedName("total")
+	val totals: String? = null,
+
+	@SerializedName("img")
+	val img: String? = null,
+
 	@SerializedName("category")
 	val category: String? = null
 ) : Parcelable

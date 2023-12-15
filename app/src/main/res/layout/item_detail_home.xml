@@ -29,7 +29,7 @@
                 android:fontFamily="@font/poppins_extrabolditalic"
                 android:text="@string/tv_title_item_detail_home"
                 android:textColor="@color/purple"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

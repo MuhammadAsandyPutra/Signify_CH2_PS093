@@ -4,8 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.signify_ch2_ps093.R
 import com.example.signify_ch2_ps093.data.network.ListItem
 import com.example.signify_ch2_ps093.data.network.MaterialsItem
@@ -48,6 +50,7 @@ class CategoryAdapter(private val context: Context) :
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val category = categories[position]
         holder.bind(category)
+
     }
 
     override fun getItemCount(): Int {
@@ -57,6 +60,8 @@ class CategoryAdapter(private val context: Context) :
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val categoryName: TextView = itemView.findViewById(R.id.tv_title)
         private var currentItem: MaterialsItem? = null
+        private val kosaKata: TextView = itemView.findViewById(R.id.tv_subtitle)
+        private val imgCategory: ImageView = itemView.findViewById(R.id.iv_image)
 
         init {
             itemView.setOnClickListener {
@@ -64,7 +69,7 @@ class CategoryAdapter(private val context: Context) :
                 if (position != RecyclerView.NO_POSITION) {
                     val clickedItem = categories[position]
                     clickedItem?.let {
-                        listener?.onItemClick(it) // Call listener when item is clicked with MaterialsItem object
+                        listener?.onItemClick(it)
                     }
                 }
             }
@@ -73,6 +78,11 @@ class CategoryAdapter(private val context: Context) :
         fun bind(category: MaterialsItem?) {
             currentItem = category
             categoryName.text = category?.category
+            kosaKata.text = category?.totals
+            Glide.with(itemView.context)
+                .load(category?.img)
+                .centerCrop()
+                .into(imgCategory)
         }
     }
 }

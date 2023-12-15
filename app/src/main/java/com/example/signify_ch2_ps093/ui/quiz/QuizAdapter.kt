@@ -3,8 +3,10 @@ package com.example.signify_ch2_ps093.ui.quiz
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.signify_ch2_ps093.R
 import com.example.signify_ch2_ps093.data.network.ContentItem
 import com.example.signify_ch2_ps093.data.network.QuizessItem
@@ -80,6 +82,7 @@ class QuizAdapter(
                     }
                 }
             }
+
         } else if (holder is LockedQuizViewHolder) {
             holder.bindLocked(levelItem)
         }
@@ -101,10 +104,16 @@ class QuizAdapter(
 
     inner class OpenQuizViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val levelNameTextView: TextView = itemView.findViewById(R.id.tv_title_level)
-
+        private val kosaKata: TextView = itemView.findViewById(R.id.tv_subtitle_level)
+        private val imgOpen: ImageView = itemView.findViewById(R.id.iv_image_level_open)
 
         fun bindOpen(quizItem: QuizessItem) {
             levelNameTextView.text = quizItem.levelName
+            kosaKata.text = quizItem.totals
+            Glide.with(itemView.context)
+                .load(quizItem.imgOpen)
+                .centerCrop()
+                .into(imgOpen)
             // Setup tampilan jika item terbuka
 
         }
@@ -112,9 +121,16 @@ class QuizAdapter(
 
     inner class LockedQuizViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val levelNameTextView: TextView = itemView.findViewById(R.id.tv_title_level)
+        private val kosaKata: TextView = itemView.findViewById(R.id.tv_subtitle_level)
+        private val imgLocked: ImageView = itemView.findViewById(R.id.iv_image_level_locked)
 
         fun bindLocked(quizItem: QuizessItem) {
             levelNameTextView.text = quizItem.levelName
+            kosaKata.text = quizItem.totals
+            Glide.with(itemView.context)
+                .load(quizItem.imgLocked)
+                .centerCrop()
+                .into(imgLocked)
             // Setup tampilan jika item terkunci
         }
     }

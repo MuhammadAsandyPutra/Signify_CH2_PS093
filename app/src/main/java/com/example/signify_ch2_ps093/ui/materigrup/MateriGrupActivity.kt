@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.signify_ch2_ps093.R
 import com.example.signify_ch2_ps093.data.network.ApiConfig
 import com.example.signify_ch2_ps093.data.network.DictionaryResponse
 import com.example.signify_ch2_ps093.data.network.ListItem
@@ -83,5 +84,10 @@ class MateriGrupActivity : AppCompatActivity(), CategoryAdapter.OnItemClickListe
         intent.putExtra("LIST_ITEM_NAMES", listItemNames)
 
         startActivity(intent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.bottomNavBar.menu.findItem(R.id.dictionary)?.isChecked = true
     }
 }

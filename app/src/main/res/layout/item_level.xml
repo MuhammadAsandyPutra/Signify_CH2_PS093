@@ -23,7 +23,7 @@
             android:lineSpacingMultiplier="1"
             android:text="@string/tv_title_level"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@id/iv_image_level"
+            app:layout_constraintStart_toEndOf="@id/iv_image_level_open"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -36,30 +36,30 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_title_level" />
 
         <ImageView
-            android:id="@+id/iv_image_level"
+            android:id="@+id/iv_image_level_open"
             android:layout_width="77dp"
             android:layout_height="77dp"
             android:layout_marginStart="16dp"
             android:contentDescription="@string/content_description"
             android:padding="10dp"
             android:scaleType="center"
-            android:src="@drawable/circle_level"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_no_level"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_bold"
-            android:text="@string/tv_no_level"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/iv_image_level"
-            app:layout_constraintStart_toStartOf="@+id/iv_image_level"
-            app:layout_constraintTop_toTopOf="@+id/iv_image_level" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_no_level"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/poppins_bold"-->
+<!--            android:text="@string/tv_no_level"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="24sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/iv_image_level"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/iv_image_level"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/iv_image_level" />-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,6 +20,15 @@ data class QuizessItem(
 	@field:SerializedName("level")
 	val level: Int? = null,
 
+	@field:SerializedName("total")
+	val totals: String? = null,
+
+	@field:SerializedName("img_open")
+	val imgOpen: String? = null,
+
+	@field:SerializedName("img_locked")
+	val imgLocked: String? = null,
+
 	@field:SerializedName("content")
 	val content: List<ContentItem>? = null,
 
