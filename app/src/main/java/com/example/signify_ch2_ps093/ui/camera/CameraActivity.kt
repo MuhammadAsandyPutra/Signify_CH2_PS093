@@ -6,10 +6,8 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.provider.MediaStore
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -17,35 +15,24 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.AspectRatio
 import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.camera.video.MediaStoreOutputOptions
-import androidx.camera.video.Quality
-import androidx.camera.video.QualitySelector
-import androidx.camera.video.Recorder
-import androidx.camera.video.Recording
-import androidx.camera.video.VideoCapture
-import androidx.camera.video.VideoRecordEvent
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.signify_ch2_ps093.R
 import com.example.signify_ch2_ps093.databinding.ActivityCameraBinding
 import com.example.signify_ch2_ps093.ui.utils.hide
 import com.example.signify_ch2_ps093.ui.utils.show
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.SimpleExoPlayer
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 
 class CameraActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityCameraBinding
-    private lateinit var player: SimpleExoPlayer
-    private val recordingDuration = 5000
-    private var videoCapture: VideoCapture<Recorder>? = null
-    private var recording: Recording? = null
-    private var currentVideoUri: Uri? = null
+    private var imageCapture: ImageCapture? = null
+    private var currentImageUri: Uri? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,20 +49,10 @@ class CameraActivity : AppCompatActivity() {
             )
         }
 
-        viewBinding.captureVideo.setOnClickListener {
-            val delayInMillis = 2000
-            Handler().postDelayed({
-                if (recording == null) {
-                    startRecording()
-                } else {
-                    stopRecording()
-                }
-            }, delayInMillis.toLong())
+        viewBinding.captureImage.setOnClickListener {
+            startCapturingImage()
         }
 
-        viewBinding.stopVideo.setOnClickListener {
-            stopRecording()
-        }
 
         viewBinding.btnGaleri.setOnClickListener {
             openGallery()
@@ -97,10 +74,6 @@ class CameraActivity : AppCompatActivity() {
 
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-        val recorder = Recorder.Builder()
-            .setQualitySelector(QualitySelector.from(Quality.LOWEST))
-            .build()
-        videoCapture = VideoCapture.withOutput(recorder)
 
         cameraProviderFuture.addListener({
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
@@ -113,6 +86,11 @@ class CameraActivity : AppCompatActivity() {
                     it.setSurfaceProvider(viewBinding.viewFinder.surfaceProvider)
                 }
 
+            // ImageCapture
+            imageCapture = ImageCapture.Builder()
+                .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
+                .build()
+
             // Select front camera as a default
             val cameraSelector = CameraSelector.Builder()
                 .requireLensFacing(CameraSelector.LENS_FACING_FRONT)
@@ -121,7 +99,7 @@ class CameraActivity : AppCompatActivity() {
             try {
                 cameraProvider.unbindAll()
                 cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview, videoCapture
+                    this, cameraSelector, preview, imageCapture
                 )
 
             } catch (exc: Exception) {
@@ -131,109 +109,86 @@ class CameraActivity : AppCompatActivity() {
         }, ContextCompat.getMainExecutor(this))
     }
 
-    private fun startRecording() {
-        val videoCapture = this.videoCapture ?: return
-        viewBinding.captureVideo.isEnabled = false
+
+    private fun startCapturingImage() {
+        val imageCapture = this.imageCapture ?: return
+        viewBinding.captureImage.isEnabled = false
 
         val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
             .format(System.currentTimeMillis())
         val contentValues = ContentValues().apply {
             put(MediaStore.MediaColumns.DISPLAY_NAME, name)
-            put(MediaStore.MediaColumns.MIME_TYPE, "video/mp4")
+            put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                put(MediaStore.Video.Media.RELATIVE_PATH, "Movies/CameraX-Video")
+                put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/CameraX-Image")
             }
         }
 
-        val mediaStoreOutputOptions = MediaStoreOutputOptions
-            .Builder(contentResolver, MediaStore.Video.Media.EXTERNAL_CONTENT_URI)
-            .setContentValues(contentValues)
-            .build()
+        val outputOptions = ImageCapture.OutputFileOptions.Builder(
+            contentResolver,
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+            contentValues
+        ).build()
 
-        recording = videoCapture.output
-            .prepareRecording(this, mediaStoreOutputOptions)
-            .start(ContextCompat.getMainExecutor(this)) { recordEvent ->
-                when (recordEvent) {
-                    is VideoRecordEvent.Start -> {
-                        viewBinding.captureVideo.isEnabled = true
-                        viewBinding.stopVideo.show()
-                        viewBinding.btnGaleri.hide()
-                        viewBinding.btnTips.hide()
 
-                        Handler().postDelayed({
-                            stopRecording()
-                        }, recordingDuration.toLong())
-                    }
+        imageCapture.takePicture(
+            outputOptions,
+            ContextCompat.getMainExecutor(this),
+            object : ImageCapture.OnImageSavedCallback {
+                override fun onImageSaved(output: ImageCapture.OutputFileResults) {
+                    output.savedUri?.let { showImagePreview(it) }
+                }
 
-                    is VideoRecordEvent.Finalize -> {
-                        if (!recordEvent.hasError()) {
-                            showPreview(recordEvent.outputResults.outputUri)
-                        }
-                        viewBinding.captureVideo.isEnabled = true
-                        viewBinding.stopVideo.hide()
-                    }
+                override fun onError(exc: ImageCaptureException) {
+                    Toast.makeText(
+                        this@CameraActivity,
+                        "Gagal mengambil gambar.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    Log.e(TAG, "onError: ${exc.message}")
                 }
             }
+        )
     }
 
-    private fun stopRecording() {
-        recording?.stop()
-        recording = null
-    }
-
-    private fun showPreview(videoUri: Uri) {
-        currentVideoUri = videoUri
+    private fun showImagePreview(imageUri: Uri) {
+        currentImageUri = imageUri
         viewBinding.viewFinder.hide()
-        viewBinding.cvPreviewVideo.show()
-        viewBinding.playerView.show()
+        viewBinding.cvPreviewImage.show()
         viewBinding.btnLanjutkan.show()
-        viewBinding.captureVideo.hide()
+        viewBinding.captureImage.hide()
         viewBinding.btnGaleri.hide()
         viewBinding.btnTips.hide()
-        viewBinding.ivCorrect.show()
-        viewBinding.tvAnswerCorrect.show()
+        viewBinding.ivCorrect.hide()
+        viewBinding.tvAnswerCorrect.hide()
 
-        initializePlayer(videoUri)
+        initializeImagePreview(imageUri)
     }
 
-    private fun initializePlayer(videoUri: Uri) {
-        player = SimpleExoPlayer.Builder(this).build()
-        player.setMediaItem(MediaItem.fromUri(videoUri))
-        player.repeatMode = Player.REPEAT_MODE_ALL
-        viewBinding.playerView.player = player
-        player.prepare()
-        player.play()
+    private fun initializeImagePreview(imageUri: Uri) {
+        viewBinding.imageView.setImageURI(imageUri)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        player.release()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        currentVideoUri?.let { showPreview(it) }
-    }
 
     private val launcherGallery = registerForActivityResult(
         ActivityResultContracts.PickVisualMedia()
     ) { uri: Uri? ->
         if (uri != null) {
-            currentVideoUri = uri
-            showVideo()
+            currentImageUri = uri
+            showImage()
         } else {
-            Log.d("Video Picker", "No media selected")
+            Log.d("Image Picker", "No media selected")
         }
     }
 
     private fun openGallery() {
-        launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.VideoOnly))
+        launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
 
-    private fun showVideo() {
-        currentVideoUri?.let {
-            Log.d("Video URI", "showVideo: $it")
-            showPreview(it)
+    private fun showImage() {
+        currentImageUri?.let {
+            Log.d("Image  URI", "showVideo: $it")
+            showImagePreview(it)
         }
     }
 
