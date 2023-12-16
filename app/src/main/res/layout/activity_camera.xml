@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_quiz"
     tools:context=".ui.camera.CameraActivity">
 
     <androidx.camera.view.PreviewView
@@ -45,13 +46,13 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Galeri" />
+        android:text="Galeri" />
 
     <Button
         android:id="@+id/btnTips"
         android:layout_width="113dp"
         android:layout_height="wrap_content"
-        tools:text="Tips"
+        android:text="Tips"
         android:fontFamily="@font/poppins_semibold"
         android:textColor="@color/black"
         android:backgroundTint="#3298B3"
@@ -60,10 +61,88 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="21dp"/>
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_previewVideo"
+        android:layout_width="281dp"
+        android:layout_height="435dp"
+        android:layout_marginTop="8dp"
+        android:elevation="8dp"
+        android:visibility="gone"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/playerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp" />
 
+    </com.google.android.material.card.MaterialCardView>
 
+    <Button
+        android:id="@+id/btnLanjutkan"
+        android:layout_width="300dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="16dp"
+        android:text="Lanjutkan"
+        android:backgroundTint="@color/blue"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="21sp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewFinder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"/>
 
+    <ImageView
+        android:id="@+id/iv_correct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/image_correct"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_previewVideo"
+        android:visibility="gone"/>
 
+    <TextView
+        android:id="@+id/tv_answerCorrect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:text="Benar"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/captureVideo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_wrong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/image_wrong"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_previewVideo"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_answerWrong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:text="Salah"
+        android:textSize="32sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/captureVideo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

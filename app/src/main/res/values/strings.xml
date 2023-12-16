@@ -89,4 +89,5 @@
         <item>Perempuan</item>
     </string-array>
 
+    <string name="tips_camera">Ini merupakan tips penggunaan kamera</string>
 </resources>
