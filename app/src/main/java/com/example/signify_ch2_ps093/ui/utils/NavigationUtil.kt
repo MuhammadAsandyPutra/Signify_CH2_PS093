@@ -1,5 +1,6 @@
 package com.example.signify_ch2_ps093.ui.utils
 
+import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import com.example.signify_ch2_ps093.R
@@ -15,19 +16,27 @@ object NavigationUtil {
             when (item.itemId) {
                 R.id.profile -> {
                     val intent = Intent(activity, ProfileActivity::class.java)
-                    activity.startActivity(intent)
+//                    activity.startActivity(intent)
+                    val options = ActivityOptions.makeCustomAnimation(activity, 0, 0)
+                    activity.startActivity(intent, options.toBundle())
                     activity.finish()
                     true
                 }
+
                 R.id.home -> {
                     val intent = Intent(activity, HomeActivity::class.java)
-                    activity.startActivity(intent)
+//                    activity.startActivity(intent)
+                    val options = ActivityOptions.makeCustomAnimation(activity, 0, 0)
+                    activity.startActivity(intent, options.toBundle())
                     activity.finish()
                     true
                 }
+
                 R.id.dictionary -> {
                     val intent = Intent(activity, MateriGrupActivity::class.java)
-                    activity.startActivity(intent)
+//                    activity.startActivity(intent)
+                    val options = ActivityOptions.makeCustomAnimation(activity, 0, 0)
+                    activity.startActivity(intent, options.toBundle())
                     activity.finish()
                     true
                 }

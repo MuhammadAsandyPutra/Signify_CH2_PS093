@@ -119,9 +119,8 @@
         android:layout_marginTop="1dp"
         android:background="@color/white_blue"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_materi_grup"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:menu="@menu/menu_navbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

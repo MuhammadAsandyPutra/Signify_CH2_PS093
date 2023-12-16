@@ -1,5 +1,6 @@
 package com.example.signify_ch2_ps093.ui.home
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -24,13 +25,15 @@ class HomeAdapter(private val itemList: ArrayList<HomeModel>) :
         val currentItem = itemList[position]
 
         holder.itemView.setOnClickListener {
-            if (position == 0) {
-                val intent = Intent(holder.itemView.context, MateriGrupActivity::class.java)
-                holder.itemView.context.startActivity(intent)
+            val context = holder.itemView.context
+            val intent = if (position == 0) {
+                Intent(context, MateriGrupActivity::class.java)
             } else {
-                val intent = Intent(holder.itemView.context, QuizActivity::class.java)
-                holder.itemView.context.startActivity(intent)
+                Intent(context, QuizActivity::class.java)
             }
+            
+            val options = ActivityOptions.makeCustomAnimation(context, 0, 0)
+            context.startActivity(intent, options.toBundle())
         }
         holder.bind(currentItem)
     }
