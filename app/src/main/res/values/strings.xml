@@ -89,5 +89,5 @@
         <item>Perempuan</item>
     </string-array>
 
-    <string name="tips_camera">Ini merupakan tips penggunaan kamera</string>
+    <string name="tips_camera">Arahkan kamera hingga tangan anda terlihat jelas, lalu tekan tombol untuk menangkap gambar</string>
 </resources>

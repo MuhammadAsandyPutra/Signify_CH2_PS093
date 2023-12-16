@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.provider.MediaStore
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -30,6 +29,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.signify_ch2_ps093.R
 import com.example.signify_ch2_ps093.databinding.ActivityCameraBinding
+import com.example.signify_ch2_ps093.ui.quiz.QuizResultFragment
 import com.example.signify_ch2_ps093.ui.utils.hide
 import com.example.signify_ch2_ps093.ui.utils.show
 import com.google.android.exoplayer2.MediaItem
@@ -192,6 +192,14 @@ class CameraActivity : AppCompatActivity() {
         viewBinding.btnTips.hide()
         viewBinding.ivCorrect.show()
         viewBinding.tvAnswerCorrect.show()
+
+        viewBinding.btnLanjutkan.setOnClickListener {
+            val fragment = QuizResultFragment()
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, fragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
 
         initializePlayer(videoUri)
     }

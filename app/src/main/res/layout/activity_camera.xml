@@ -7,6 +7,16 @@
     android:background="@drawable/bg_quiz"
     tools:context=".ui.camera.CameraActivity">
 
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
     <androidx.camera.view.PreviewView
         android:id="@+id/viewFinder"
         android:layout_width="match_parent"
@@ -144,5 +154,9 @@
         app:layout_constraintBottom_toTopOf="@+id/captureVideo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
