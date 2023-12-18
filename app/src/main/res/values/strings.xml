@@ -27,7 +27,7 @@
     <string name="tv_title_materi">kata sapaan</string>
     <string name="tv_subtitle_materi">20 kosakata</string>
     <string name="content_description">content description</string>
-    <string name="mari_belajar_bahasa_isyarat">Mari Belajar bahasa isyarat !</string>
+    <string name="mari_belajar_bahasa_isyarat">Mari Belajar di Signify!</string>
     <string name="lakukan_apa_hari_ini">Lakukan apa hari ini?</string>
     <string name="selalu_tambahkan_pengetahuanmu">Selalu tambahkan pengetahuanmu !</string>
     <string name="ayo_belajar_bahasa_isyarat">Ayo belajar bahasa isyarat</string>
@@ -90,4 +90,5 @@
     </string-array>
 
     <string name="tips_camera">Arahkan kamera hingga tangan anda terlihat jelas, lalu tekan tombol untuk menangkap gambar</string>
+    <string name="tv_header_message_quiz">Selesaikan semua quiz</string>
 </resources>

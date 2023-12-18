@@ -19,7 +19,7 @@ import com.example.signify_ch2_ps093.ui.utils.toast
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityLoginBinding
+    private lateinit var binding: ActivityLoginBinding
     private lateinit var viewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,24 +30,17 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this, ViewModelFactory(this))[LoginViewModel::class.java]
 
-        binding.tvDirectToSignIn.setOnClickListener{
+        binding.tvDirectToSignIn.setOnClickListener {
             val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
             startActivity(intent)
             finish()
 //            overridePendingTransition(android.R.anim.slide_out_right, android.R.anim.slide_in_left)
         }
-/*
-        binding.btnLogin.setOnClickListener{
-            val intent = Intent(this@LoginActivity, HomeActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
- */
         observer()
         setupLogin()
 
     }
+
     private fun login(email: String, password: String) {
         viewModel.login(email, password).observe(this) { result ->
             when (result) {
@@ -72,6 +65,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun observer() {
         val sharedPref = UserPreference.init(this, "session")
         val token = sharedPref.getString(Constant.TOKEN, "")
@@ -85,10 +79,10 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun loginProcess( token: String) {
+    private fun loginProcess(token: String) {
         Log.d("LoginProcess", "Received token: $token")
         UserPreference.saveToken(token, this)
-
+        UserPreference.getUsername(this)
         val intent = Intent(this, HomeActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)

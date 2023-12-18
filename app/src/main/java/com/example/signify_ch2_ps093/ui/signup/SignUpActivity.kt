@@ -17,7 +17,7 @@ import com.example.signify_ch2_ps093.ui.utils.toast
 
 class SignUpActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivitySignUpBinding
+    private lateinit var binding: ActivitySignUpBinding
     private lateinit var viewModel: SignupViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +37,7 @@ class SignUpActivity : AppCompatActivity() {
         }
         setupAction()
     }
+
     private fun signup(name: String, email: String, password: String) {
         viewModel.signup(name, email, password).observe(this) {
             when (it) {
@@ -47,8 +48,9 @@ class SignUpActivity : AppCompatActivity() {
 
                 is Result.Success -> {
                     binding.progressBar.hide()
+                    UserPreference.saveUserInfo(it.data.name, it.data.email, applicationContext)
                     AlertDialog.Builder(this).apply {
-                        setTitle("Register")
+                        setTitle("Signup")
                         setMessage(getString(R.string.signup_succeed))
                         setPositiveButton(getString(R.string.continue_login)) { _, _ ->
                             val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
@@ -78,7 +80,7 @@ class SignUpActivity : AppCompatActivity() {
 
 
             signup(name, email, password)
-            UserPreference.saveUserInfo(username = name, email, applicationContext)
+            //UserPreference.saveUserInfo(username = name, email, applicationContext)
         }
     }
 }

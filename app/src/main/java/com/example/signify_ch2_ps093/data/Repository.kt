@@ -28,6 +28,7 @@ class Repository private constructor(
                 try {
                     if (response.isSuccessful) {
                         val user = UserModel(
+                            name,
                             email,
                             "null",
                             false

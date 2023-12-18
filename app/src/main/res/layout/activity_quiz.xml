@@ -12,7 +12,6 @@
         android:layout_height="100dp"
         android:background="@drawable/rectengle_4"
         android:backgroundTint="#5C95C0"
-        android:layout_marginTop="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -46,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:fontFamily="@font/poppins_medium"
+                    android:fontFamily="@font/poppins_bold"
                     android:text="Hi Username"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
@@ -56,14 +55,12 @@
                     android:id="@+id/headerIv"
                     android:layout_width="210dp"
                     android:layout_height="70dp"
-                    android:layout_margin="8dp"
-                    android:padding="8dp"
+                    android:contentDescription="@string/content_description"
                     android:scaleType="centerCrop"
                     android:src="@drawable/header_decor"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:contentDescription="@string/content_description" />
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <TextView
@@ -71,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/poppins_light"
-                    android:text="@string/mari_belajar_bahasa_isyarat"
+                    android:text="@string/tv_header_message_quiz"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/usernameHeader" />

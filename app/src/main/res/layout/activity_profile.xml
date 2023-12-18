@@ -30,6 +30,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/poppins_semibold"
+            android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@id/IvProfile"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Muhammad Asandy Putra" />
@@ -67,51 +68,51 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/logo_signify"
-                android:layout_marginBottom="16dp"/>
+                android:src="@drawable/logo_signify" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp"
                 android:text="Signify - Belajar Bahasa Isyarat"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="16dp"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Signify adalah aplikasi pembelajaran bahasa isyarat yang dirancang untuk membantu pengguna dalam memahami dan mempelajari bahasa isyarat secara interaktif. Aplikasi ini menyediakan berbagai konten, seperti video pengajaran, latihan, dan materi pembelajaran untuk meningkatkan keterampilan berkomunikasi menggunakan bahasa isyarat."
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="16dp"
+                android:text="Signify adalah aplikasi pembelajaran bahasa isyarat yang dirancang untuk membantu pengguna dalam memahami dan mempelajari bahasa isyarat secara interaktif. Aplikasi ini menyediakan berbagai konten, seperti video pengajaran, latihan, dan materi pembelajaran untuk meningkatkan keterampilan berkomunikasi menggunakan bahasa isyarat." />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="Tim Signify"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Signify dikembangkan oleh tim ahli dalam bidang bahasa isyarat, pendidikan, dan teknologi yang berkomitmen untuk menyediakan pengalaman pembelajaran yang menyenangkan dan efektif."
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="16dp"
+                android:text="Signify dikembangkan oleh tim ahli dalam bidang bahasa isyarat, pendidikan, dan teknologi yang berkomitmen untuk menyediakan pengalaman pembelajaran yang menyenangkan dan efektif." />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Versi Aplikasi: 1.0.0"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="16dp"
+                android:text="Versi Aplikasi: 1.0.0" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="© 2023 Signify. Hak Cipta Dilindungi."
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                android:text="© 2023 Signify. Hak Cipta Dilindungi." />
         </LinearLayout>
     </ScrollView>
 
@@ -122,8 +123,8 @@
         android:layout_height="wrap_content"
         android:background="@color/white_blue"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/menu_navbar" />
 
     <ImageView

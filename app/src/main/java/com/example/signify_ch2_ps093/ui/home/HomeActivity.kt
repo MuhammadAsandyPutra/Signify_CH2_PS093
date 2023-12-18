@@ -9,15 +9,16 @@ import com.example.signify_ch2_ps093.data.HomeModel
 import com.example.signify_ch2_ps093.data.pref.UserPreference
 import com.example.signify_ch2_ps093.databinding.ActivityHomeBinding
 import com.example.signify_ch2_ps093.ui.utils.Constant
+import com.example.signify_ch2_ps093.ui.utils.Constant.SESSION
 import com.example.signify_ch2_ps093.ui.utils.NavigationUtil
 
 class HomeActivity : AppCompatActivity() {
 
-    private lateinit var rvHome : RecyclerView
-    private lateinit var adapter : HomeAdapter
+    private lateinit var rvHome: RecyclerView
+    private lateinit var adapter: HomeAdapter
     private lateinit var adapterArticle: HomeArticleAdapter
-    private lateinit var binding : ActivityHomeBinding
-    private lateinit var rvHome2 : RecyclerView
+    private lateinit var binding: ActivityHomeBinding
+    private lateinit var rvHome2: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,11 +34,13 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
-    private fun setupView(){
-        val sharedPref = UserPreference.init(this, "session")
+    private fun setupView() {
+        val sharedPref = UserPreference.init(this, SESSION)
         val token = sharedPref.getString(Constant.TOKEN, "")
+        val usernames = UserPreference.getUsername(applicationContext)
 
-        if (token != ""){
+        if (token != "") {
+            binding.usernameHeader.text = "Hello, $usernames"
             rvHome = binding.rv1
             rvHome2 = binding.rv2
             adapter = HomeAdapter(getListData())
@@ -67,6 +70,7 @@ class HomeActivity : AppCompatActivity() {
 
         return data
     }
+
     private fun getArticleListData(): ArrayList<HomeModel> {
         val titles = resources.getStringArray(R.array.data_article_title)
         val messages = resources.getStringArray(R.array.data_article_message)

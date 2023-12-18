@@ -1,9 +1,8 @@
 package com.example.signify_ch2_ps093.data.pref
 
+
 import android.content.Context
 import android.content.SharedPreferences
-
-
 import com.example.signify_ch2_ps093.ui.utils.Constant.SESSION
 import com.example.signify_ch2_ps093.ui.utils.Constant.TOKEN
 
@@ -32,28 +31,27 @@ object UserPreference {
         editor.apply()
     }
 
-    fun saveUserInfo(username: String, email: String, context: Context){
+    fun saveUserInfo(name: String, email: String, context: Context) {
         val editor = preferenceEditor(context)
-        editor.putString("username", username)
+        editor.putString("name", name)
         editor.putString("email", email)
         editor.apply()
     }
 
     fun getUsername(context: Context): String? {
         val sharedPref = context.getSharedPreferences(SESSION, Context.MODE_PRIVATE)
-        return sharedPref.getString("username", null)
+        return sharedPref.getString("name", null)
     }
 
-    fun getEmail(context: Context): String?{
+    fun getEmail(context: Context): String? {
         val sharedPref = context.getSharedPreferences(SESSION, Context.MODE_PRIVATE)
         return sharedPref.getString("email", null)
     }
 
 
-    //pake sharedpreference dulu buat ngetest ui level
     fun getUserLevel(context: Context): Int {
         val sharedPref = context.getSharedPreferences(SESSION, Context.MODE_PRIVATE)
-        return sharedPref.getInt("user_level", 1) // Default level 1 jika tidak ada nilai yang tersimpan
+        return sharedPref.getInt("user_level", 1)
     }
 
 }
