@@ -61,8 +61,9 @@ class DetailItemActivity : AppCompatActivity() {
                         val filteredItems = materials?.find { material -> material?.category == selectedCategory }?.listItems.orEmpty()
                         adapter = DetailItemAdapter(filteredItems)
                         recyclerView.adapter = adapter
-
                     }
+
+
                 } else {
                     Toast.makeText(this@DetailItemActivity, "Failed to get data", Toast.LENGTH_SHORT).show()
                 }
