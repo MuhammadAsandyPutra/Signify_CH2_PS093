@@ -1,5 +1,7 @@
 package com.example.signify_ch2_ps093.data
 
+import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.example.signify_ch2_ps093.data.network.ApiService
@@ -7,14 +9,17 @@ import com.example.signify_ch2_ps093.data.network.LoginRequest
 import com.example.signify_ch2_ps093.data.network.RegisterRequest
 import com.example.signify_ch2_ps093.data.network.Responses
 import com.example.signify_ch2_ps093.data.pref.UserModel
+import com.example.signify_ch2_ps093.data.pref.UserPreference
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
 import retrofit2.Response
 
+
 class Repository private constructor(
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val context: Context
 ) {
     private val result = MediatorLiveData<Result<UserModel>>()
     private val uploadResult = MediatorLiveData<Result<String>>()
@@ -62,10 +67,16 @@ class Repository private constructor(
             override fun onResponse(call: Call<Responses>, response: Response<Responses>) {
                 try {
                     if (response.isSuccessful) {
+
                         val responseBody = response.body()
                         if (responseBody != null) {
                             uploadResult.value = Result.Success(responseBody.loginResult!!.token!!)
-
+                            val name = responseBody.loginResult.name
+                            Log.d("Repository", "Login successful. Username: $name")
+// Save username and email to UserPreference
+                            if (name != null) {
+                                UserPreference.saveUserInfo(name, email, context)
+                            }
                         }
                     } else {
                         throw HttpException(response)
@@ -90,10 +101,11 @@ class Repository private constructor(
         private var instance: Repository? = null
         fun getInstance(
             apiService: ApiService,
-            //database: Database
+            //database:
+            context: Context
         ): Repository =
             instance ?: synchronized(this) {
-                instance ?: Repository(apiService)
+                instance ?: Repository(apiService, context)
             }.also { instance = it }
     }
 }

@@ -42,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login(email: String, password: String) {
-        viewModel.login(email, password).observe(this) { result ->
+        viewModel.login(email, password, applicationContext).observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.progressBar.show()
@@ -82,10 +82,16 @@ class LoginActivity : AppCompatActivity() {
     private fun loginProcess(token: String) {
         Log.d("LoginProcess", "Received token: $token")
         UserPreference.saveToken(token, this)
-        UserPreference.getUsername(this)
-        val intent = Intent(this, HomeActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
+        binding.progressBar.postDelayed({
+            val username = UserPreference.getUsername(this)
+            val email = UserPreference.getEmail(this)
+
+            Log.d("LoginProcess", "Username after login: $username")
+            Log.d("LoginProcess", "Email after login: $email")
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+        }, 1000)
     }
 
 

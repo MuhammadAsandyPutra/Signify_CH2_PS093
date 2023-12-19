@@ -7,6 +7,6 @@ import com.example.signify_ch2_ps093.data.network.ApiConfig
 object Injection {
     fun provideRepository(context: Context): Repository {
         val apiService = ApiConfig.getApiService()
-        return Repository.getInstance(apiService)
+        return Repository.getInstance(apiService, context)
     }
 }

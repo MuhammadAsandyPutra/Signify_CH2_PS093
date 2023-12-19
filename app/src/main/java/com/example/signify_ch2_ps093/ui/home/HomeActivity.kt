@@ -1,6 +1,7 @@
 package com.example.signify_ch2_ps093.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -91,5 +92,8 @@ class HomeActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         binding.bottomNavBar.menu.findItem(R.id.home)?.isChecked = true
+        val updatedUsername = UserPreference.getUsername(applicationContext)
+        Log.d("home username", "username = $updatedUsername")
+        binding.usernameHeader.text = updatedUsername
     }
 }

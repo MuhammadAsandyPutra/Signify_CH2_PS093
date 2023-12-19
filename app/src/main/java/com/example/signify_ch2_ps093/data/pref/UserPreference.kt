@@ -27,6 +27,8 @@ object UserPreference {
     fun logOut(context: Context) {
         val editor = preferenceEditor(context)
         editor.remove(TOKEN)
+        editor.remove("name")
+        editor.remove("email")
         editor.remove("status")
         editor.apply()
     }
