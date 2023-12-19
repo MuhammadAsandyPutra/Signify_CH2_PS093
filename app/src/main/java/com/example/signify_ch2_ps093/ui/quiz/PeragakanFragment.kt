@@ -58,6 +58,7 @@ class PeragakanFragment : Fragment() {
 
         practiceItem = requireArguments().getParcelableArrayList(ARG_PRACTICE) ?: arrayListOf()
 
+
         binding.btnSubmit.setOnClickListener {
             navigateToNextQuestion()
 

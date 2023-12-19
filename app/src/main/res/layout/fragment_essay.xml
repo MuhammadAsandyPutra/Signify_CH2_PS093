@@ -102,6 +102,7 @@
                 android:textColorHint="#AE4F4F4F">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editEssayTextInput"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="text"

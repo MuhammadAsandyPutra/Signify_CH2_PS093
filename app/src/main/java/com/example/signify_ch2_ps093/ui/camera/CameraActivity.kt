@@ -2,6 +2,7 @@ package com.example.signify_ch2_ps093.ui.camera
 
 import android.Manifest
 import android.content.ContentValues
+import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -24,10 +25,14 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.signify_ch2_ps093.R
+import com.example.signify_ch2_ps093.data.PeragakanAnswer
 import com.example.signify_ch2_ps093.databinding.ActivityCameraBinding
 import com.example.signify_ch2_ps093.ml.TfliteModelling
+import com.example.signify_ch2_ps093.ui.quiz.QuizResultFragment
+import com.example.signify_ch2_ps093.ui.utils.Constant.SESSION
 import com.example.signify_ch2_ps093.ui.utils.hide
 import com.example.signify_ch2_ps093.ui.utils.show
+import com.google.gson.Gson
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.nio.ByteBuffer
@@ -39,7 +44,7 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityCameraBinding
     private var imageCapture: ImageCapture? = null
     private var currentImageUri: Uri? = null
-
+    val peragakanAnswer = mutableListOf<PeragakanAnswer>()
 
     private val arrayOfWords: Array<String> = arrayOf(
         "1", "10", "2", "3", "4", "5", "6", "7", "8", "9",
@@ -70,6 +75,7 @@ class CameraActivity : AppCompatActivity() {
         "Y",
         "Z"
     )
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,7 +109,16 @@ class CameraActivity : AppCompatActivity() {
                 processCapturedImage(uri)
             }
 
+            val fragment = QuizResultFragment()
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, fragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+
+
         }
+
+
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
@@ -187,7 +202,6 @@ class CameraActivity : AppCompatActivity() {
         )
     }
 
-
     private fun processCapturedImage(imageUri: Uri) {
        val model = TfliteModelling.newInstance(this)
 
@@ -212,6 +226,13 @@ class CameraActivity : AppCompatActivity() {
             Log.d(TAG, "Prediction result: $result")
 
             inputStream?.close()
+
+            val answer = PeragakanAnswer(result)
+            peragakanAnswer.add(answer)
+
+            UserPreferences.savePeragakanAnswer(this, answer)
+
+
         } catch (e: Exception) {
             Log.e(TAG, "Error processing image: ${e.message}")
         }
@@ -319,6 +340,30 @@ class CameraActivity : AppCompatActivity() {
             }
         }
     }
+
+
+    object UserPreferences {
+        // Fungsi yang sebelumnya ada
+
+        private const val PERAGAKAN_ANSWER_KEY = "peragakan_answer"
+
+        fun savePeragakanAnswer(context: Context, answer: PeragakanAnswer) {
+            val sharedPref = context.getSharedPreferences(SESSION, Context.MODE_PRIVATE)
+            val editor = sharedPref.edit()
+            val gson = Gson()
+            val json = gson.toJson(answer)
+            editor.putString(PERAGAKAN_ANSWER_KEY, json)
+            editor.apply()
+        }
+
+        fun getPeragakanAnswer(context: Context): PeragakanAnswer? {
+            val sharedPref = context.getSharedPreferences(SESSION, Context.MODE_PRIVATE)
+            val gson = Gson()
+            val json = sharedPref.getString(PERAGAKAN_ANSWER_KEY, null)
+            return gson.fromJson(json, PeragakanAnswer::class.java)
+        }
+    }
+
 
     companion object {
         private const val TAG = "CameraActivity"

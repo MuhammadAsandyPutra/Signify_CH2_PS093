@@ -56,4 +56,13 @@ object UserPreference {
         return sharedPref.getInt("user_level", 1)
     }
 
+    fun setUserLevel(context: Context, level:Int){
+        val sharedPref = context.getSharedPreferences(SESSION, Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putInt("user_level", level)
+        editor.apply()
+    }
+
+
+
 }

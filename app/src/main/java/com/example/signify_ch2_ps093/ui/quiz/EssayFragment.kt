@@ -1,5 +1,6 @@
 package com.example.signify_ch2_ps093.ui.quiz
 
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,13 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.signify_ch2_ps093.R
+import com.example.signify_ch2_ps093.data.EssayAnswer
+import com.example.signify_ch2_ps093.data.MultipleChoiceAnswer
 import com.example.signify_ch2_ps093.data.network.ContentItem
 import com.example.signify_ch2_ps093.data.pref.UserPreference
 import com.example.signify_ch2_ps093.databinding.FragmentEssayBinding
+import com.example.signify_ch2_ps093.ui.utils.Constant.SESSION
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+import com.google.gson.Gson
 
 class EssayFragment : Fragment() {
 
@@ -26,6 +31,8 @@ class EssayFragment : Fragment() {
     private var currentVideoIndex = 0
 
     private lateinit var practiceItem: ArrayList<ContentItem>
+
+    val essayAnswers = mutableListOf<EssayAnswer>()
 
     companion object {
         private const val ARG_ESSAY = "ESSAY"
@@ -63,6 +70,8 @@ class EssayFragment : Fragment() {
         essayArrayList = requireArguments().getParcelableArrayList(ARG_ESSAY) ?: arrayListOf()
         practiceItem = requireArguments().getParcelableArrayList(ARG_PRACTICE) ?: arrayListOf()
 
+        val multipleChoiceAnswer = arguments?.getParcelableArrayList<MultipleChoiceAnswer>("MULTIPLE")
+
         binding.btnSubmit.setOnClickListener {
             navigateToNextQuestion()
         }
@@ -70,7 +79,11 @@ class EssayFragment : Fragment() {
         if (essayArrayList.isNotEmpty()) {
             initializePlayer()
         }
+
+
+
     }
+
 
     private fun initializePlayer() {
         val userLevel = UserPreference.getUserLevel(requireContext())
@@ -105,18 +118,58 @@ class EssayFragment : Fragment() {
             currentVideoIndex++
             releasePlayer()
             initializePlayer()
+
+            saveUserEssayAnswer()
+            binding.editEssayTextInput.text = null
         } else {
             replaceWithPeragakanFragment()
         }
     }
 
     private fun replaceWithPeragakanFragment() {
+
+        for (answer in essayAnswers){
+            UserPreferences.saveEssayAnswer(requireContext(),answer)
+        }
+
         val peragakanFragment = PeragakanFragment.newInstance(practiceItem)
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        val tag = "EssayFragmentTag"
+
         transaction.replace(R.id.fragment_container, peragakanFragment)
-        transaction.addToBackStack(null)
+        transaction.addToBackStack(tag)
         transaction.commit()
     }
+
+
+    private fun saveUserEssayAnswer() {
+        val userInput = binding.editEssayTextInput.text.toString().trim()
+        val essayAnswer = EssayAnswer(questionIndex = currentVideoIndex, userAnswer = userInput)
+
+        essayAnswers.add(essayAnswer)
+
+    }
+
+    object UserPreferences {
+        // Fungsi untuk menyimpan jawaban esai ke SharedPreference
+        fun saveEssayAnswer(context: Context, answer: EssayAnswer) {
+            val sharedPref = context.getSharedPreferences(SESSION, Context.MODE_PRIVATE)
+            val editor = sharedPref.edit()
+            val gson = Gson()
+            val json = gson.toJson(answer)
+            editor.putString("essay_answer_${answer.questionIndex}", json)
+            editor.apply()
+        }
+
+        // Fungsi untuk mendapatkan jawaban esai dari SharedPreference
+        fun getEssayAnswer(context: Context, questionIndex: Int): EssayAnswer? {
+            val sharedPref = context.getSharedPreferences(SESSION, Context.MODE_PRIVATE)
+            val gson = Gson()
+            val json = sharedPref.getString("essay_answer_$questionIndex", null)
+            return gson.fromJson(json, EssayAnswer::class.java)
+        }
+    }
+
 
     private fun releasePlayer() {
         exoPlayer?.release()
