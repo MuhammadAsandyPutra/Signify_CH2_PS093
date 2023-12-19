@@ -224,6 +224,7 @@ class CameraActivity : AppCompatActivity() {
             // Get the result
             val result = getClassificationResult(outputFeature0.floatArray, arrayOfWords)
             Log.d(TAG, "Prediction result: $result")
+            Toast.makeText(this, "Hasil Predict : $result", Toast.LENGTH_SHORT).show()
 
             inputStream?.close()
 
