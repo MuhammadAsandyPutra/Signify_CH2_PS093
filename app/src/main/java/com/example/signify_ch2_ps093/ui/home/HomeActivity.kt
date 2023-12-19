@@ -1,11 +1,13 @@
 package com.example.signify_ch2_ps093.ui.home
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.signify_ch2_ps093.R
+import com.example.signify_ch2_ps093.data.ArticleModel
 import com.example.signify_ch2_ps093.data.HomeModel
 import com.example.signify_ch2_ps093.data.pref.UserPreference
 import com.example.signify_ch2_ps093.databinding.ActivityHomeBinding
@@ -13,7 +15,7 @@ import com.example.signify_ch2_ps093.ui.utils.Constant
 import com.example.signify_ch2_ps093.ui.utils.Constant.SESSION
 import com.example.signify_ch2_ps093.ui.utils.NavigationUtil
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), OnItemClickListener {
 
     private lateinit var rvHome: RecyclerView
     private lateinit var adapter: HomeAdapter
@@ -41,11 +43,14 @@ class HomeActivity : AppCompatActivity() {
         val usernames = UserPreference.getUsername(applicationContext)
 
         if (token != "") {
-            binding.usernameHeader.text = "Hello, $usernames"
+            binding.usernameHeader.text = buildString {
+                append("Hello, ")
+                append(usernames)
+            }
             rvHome = binding.rv1
             rvHome2 = binding.rv2
             adapter = HomeAdapter(getListData())
-            adapterArticle = HomeArticleAdapter(getArticleListData())
+            adapterArticle = HomeArticleAdapter(getArticleListData(), this)
 
             rvHome.setHasFixedSize(true)
             rvHome2.setHasFixedSize(true)
@@ -72,15 +77,16 @@ class HomeActivity : AppCompatActivity() {
         return data
     }
 
-    private fun getArticleListData(): ArrayList<HomeModel> {
+    private fun getArticleListData(): ArrayList<ArticleModel> {
         val titles = resources.getStringArray(R.array.data_article_title)
         val messages = resources.getStringArray(R.array.data_article_message)
         val photos = resources.obtainTypedArray(R.array.data_article_image)
+        val links = resources.getStringArray(R.array.data_article_link)
 
-        val data = ArrayList<HomeModel>()
+        val data = ArrayList<ArticleModel>()
 
         for (i in titles.indices) {
-            data.add(HomeModel(titles[i], messages[i], photos.getResourceId(i, 0)))
+            data.add(ArticleModel(titles[i], messages[i], photos.getResourceId(i, 0), links[i]))
         }
 
         photos.recycle()
@@ -93,7 +99,14 @@ class HomeActivity : AppCompatActivity() {
         super.onResume()
         binding.bottomNavBar.menu.findItem(R.id.home)?.isChecked = true
         val updatedUsername = UserPreference.getUsername(applicationContext)
-        Log.d("home username", "username = $updatedUsername")
-        binding.usernameHeader.text = updatedUsername
+        binding.usernameHeader.text = buildString {
+            append("Hello, ")
+            append(updatedUsername)
+        }
+    }
+
+    override fun onItemClick(link: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+        startActivity(intent)
     }
 }

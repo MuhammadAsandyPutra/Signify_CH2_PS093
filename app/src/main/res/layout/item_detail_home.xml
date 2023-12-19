@@ -4,13 +4,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300dp"
     android:layout_marginEnd="16dp"
+    android:layout_marginBottom="16dp"
     android:layout_height="wrap_content"
     android:padding="16dp"
     android:layout_marginStart="8dp"
-    app:cardCornerRadius="20dp"
+    app:cardCornerRadius="25dp"
     app:cardElevation="8dp">
 
     <RelativeLayout
+        android:id="@+id/card_item"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
@@ -37,9 +39,10 @@
                 android:id="@+id/tv_message_detail_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="108dp"
-                android:text="@string/ayo_belajar_bahasa_isyarat"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="70dp"
+                android:text="@string/ayo_belajar_bahasa_isyarat"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,8 +51,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:srcCompat="@drawable/image_grad" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

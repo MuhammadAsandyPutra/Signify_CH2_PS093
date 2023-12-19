@@ -73,7 +73,6 @@ class Repository private constructor(
                             uploadResult.value = Result.Success(responseBody.loginResult!!.token!!)
                             val name = responseBody.loginResult.name
                             Log.d("Repository", "Login successful. Username: $name")
-// Save username and email to UserPreference
                             if (name != null) {
                                 UserPreference.saveUserInfo(name, email, context)
                             }

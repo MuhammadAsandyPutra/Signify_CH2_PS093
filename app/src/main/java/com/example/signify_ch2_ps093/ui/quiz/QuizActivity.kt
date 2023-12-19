@@ -25,7 +25,10 @@ class QuizActivity : AppCompatActivity(), QuizAdapter.OnContentItemClickListener
 
         val userHighestLevel = UserPreference.getUserLevel(this)
         val usernames = UserPreference.getUsername(this)
-        binding.usernameHeader.text = "Let's go, $usernames"
+        binding.usernameHeader.text = buildString {
+        append("Let's go, ")
+        append(usernames)
+    }
 
         binding.rvLevel
         binding.rvLevel.layoutManager = LinearLayoutManager(this)

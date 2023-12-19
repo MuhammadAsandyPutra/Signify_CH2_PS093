@@ -5,3 +5,9 @@ data class HomeModel(
     val message: String,
     val photo: Int
 )
+data class ArticleModel(
+    val title: String,
+    val message: String,
+    val photo: Int,
+    val link: String
+)

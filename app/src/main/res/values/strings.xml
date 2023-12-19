@@ -69,20 +69,29 @@
 
     <!--list card article-->
     <string-array name="data_article_title">
-        <item>Artikel 1</item>
-        <item>Artikel 2</item>
-        <item>Artikel 3</item>
+        <item>Ilmuan Temukan\nPotensi Bahasa\nIsyarat?</item>
+        <item>Tangan Ikut\nBergerak\nSaat Bicara?</item>
+        <item>Apa Itu\nBahasa\nIsyarat?</item>
+        <item>Inilah Pendidik\nTuli sejak\n200 Tahun Lalu</item>
     </string-array>
     <string-array name="data_article_message">
-        <item>Ini banner artikel 1</item>
-        <item>Ini banner artikel 2</item>
-        <item>Ini banner artikel 3</item>
+        <item>Ilmuan Temukan Potensi Bahasa Isyarat\nyang Universal untuk Masyarakat Dunia</item>
+        <item>Mengapa Tangan Ikut Bergerak\nSaat Bicara? Ini Kata Studi</item>
+        <item>Cek Faktanya di Sini</item>
+        <item>Sosok Ferdinand Berthier di Google Doodle, Pendidik Tuli sejak 200 Tahun Lalu</item>
     </string-array>
     <integer-array name="data_article_image">
         <item>@drawable/image_book</item>
+        <item>@drawable/image_article_2</item>
         <item>@drawable/image_grad</item>
-        <item>@drawable/image_book</item>
+        <item>@drawable/image_article_4</item>
     </integer-array>
+    <string-array name="data_article_link">
+        <item>https://www.detik.com/edu/detikpedia/d-7081978/ahli-temukan-potensi-bahasa-isyarat-yang-universal-untuk-masyarakat-dunia</item>
+        <item>https://www.detik.com/edu/detikpedia/d-6793881/mengapa-tangan-ikut-bergerak-saat-bicara-ini-kata-studi</item>
+        <item>https://www.detik.com/edu/detikpedia/d-6648963/apa-itu-bahasa-isyarat-cek-faktanya-di-sini</item>
+        <item>https://www.detik.com/edu/edutainment/d-6959269/sosok-ferdinand-berthier-di-google-doodle-pendidik-tuli-sejak-200-tahun-lalu</item>
+    </string-array>
 
     <string-array name="gender_options">
         <item>Laki-laki</item>
