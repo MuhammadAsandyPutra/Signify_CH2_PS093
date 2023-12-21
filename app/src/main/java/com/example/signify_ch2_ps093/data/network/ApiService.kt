@@ -7,8 +7,6 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiService {
-
-
     @POST("register")
     fun register(@Body request: RegisterRequest): Call<Responses>
 
@@ -25,7 +23,5 @@ interface ApiService {
 
     @GET("/get/quiz")
     fun getQuiz(): Call<QuizResponse>
-
-
 
 }
