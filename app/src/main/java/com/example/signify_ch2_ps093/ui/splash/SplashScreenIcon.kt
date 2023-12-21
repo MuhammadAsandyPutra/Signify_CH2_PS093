@@ -25,6 +25,5 @@ class SplashScreenIcon : AppCompatActivity() {
             finish()
         }, SPLASH_DISPLAY_LENGTH.toLong())
 
-
     }
 }
