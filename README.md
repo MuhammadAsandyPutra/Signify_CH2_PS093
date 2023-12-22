@@ -40,6 +40,9 @@ Aplikasi Signify dikembangkan menggunakan teknologi berikut:
   
 - **Alat Pengembangan:** [Visual Studio Code]
 
+## How to clone this project ?: 
+you can clone this project by https://github.com/MuhammadAsandyPutra/Signify_CH2_PS093.git
+
 ## Kontak (Other Repository related to Signify Project
 
 - https://github.com/Obyyyy/express-api/tree/master
