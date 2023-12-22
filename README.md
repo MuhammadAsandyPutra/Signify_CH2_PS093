@@ -45,7 +45,7 @@ Aplikasi Signify dikembangkan menggunakan teknologi berikut:
   git clone https://github.com/MuhammadAsandyPutra/Signify_CH2_PS093.git
 
 ## Step by step to setup this project in Android Studio
-- Download the zip code this repository
+- Download the zip code on this repository
 - Extract it to your directory
 - Open Android studio
 - Click Open File and locate the extracted folder
