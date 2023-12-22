@@ -43,6 +43,7 @@ Aplikasi Signify dikembangkan menggunakan teknologi berikut:
 ## Kontak (Other Repository related to Signify Project
 
 - https://github.com/Obyyyy/express-api/tree/master
+- https://github.com/nizma123/Signify-ML
 
 Jika Anda memiliki pertanyaan, saran, atau masukan lainnya, silakan hubungi kami melalui email di [asandyputra77@email.com].
 
