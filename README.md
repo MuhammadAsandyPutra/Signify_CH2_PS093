@@ -41,7 +41,16 @@ Aplikasi Signify dikembangkan menggunakan teknologi berikut:
 - **Alat Pengembangan:** [Visual Studio Code]
 
 ## How to clone this project ?: 
-you can clone this project by https://github.com/MuhammadAsandyPutra/Signify_CH2_PS093.git
+- HTTPS: you can clone this project by https://github.com/MuhammadAsandyPutra/Signify_CH2_PS093.git
+  git clone https://github.com/MuhammadAsandyPutra/Signify_CH2_PS093.git
+
+## Step by step to setup this project in Android Studio
+- Download the zip code this repository
+- Extract it to your directory
+- Open Android studio
+- Click Open File and locate the extracted folder
+- Choose the extracted, sync the gradle builds
+- Run the apps on your emulator device or real device !
 
 ## Kontak (Other Repository related to Signify Project
 
